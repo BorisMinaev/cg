@@ -8,8 +8,8 @@
 
 namespace cg
 {
-
-   inline bool rectangle_segment_intersect(my_rectangle_2d const & a, segment_2d const & b)
+   template<typename T>
+   inline bool rectangle_segment_intersect(my_rectangle_2t<T> const & a, segment_2t<T> const & b)
    {
 
       triangle_2d tr1(a[0], a[1], a[2]);
