@@ -10,6 +10,7 @@ namespace cg
    template <class Scalar>
    struct contour_2t;
 
+   typedef contour_2t<double> contour_2;
    typedef contour_2t<float> contour_2f;
    typedef contour_2t<int>   contour_2i;
 
@@ -21,6 +22,10 @@ namespace cg
 
       contour_2t(contour_2t && cnt);
       contour_2t& operator = (contour_2t && cnt);
+
+      contour_2t(std::vector<point_2t<Scalar> > &pts) 
+      : pts_(pts) 
+      {}
 
       typedef typename std::vector<point_2t<Scalar> >::const_iterator const_iterator;
 
