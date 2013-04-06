@@ -19,7 +19,10 @@ TEST(orientation, uniform_line)
          double t = distr(gen);
          cg::point_2 c = a + t * (b - a);
 
-         EXPECT_EQ(cg::orientation(a, b, c), *cg::orientation_r()(a, b, c));
+         ASSERT_EQ(*cg::orientation_r()(a, b, c), cg::orientation(a, b, c)) 
+         << a.x << " " << a.y << std::endl 
+         << b.x << " " << b.y << std::endl
+         << c.x << " " << c.y << std::endl;
       }
    }
 }

@@ -22,7 +22,7 @@ namespace cg
          double l = (b.x - a.x) * (c.y - a.y);
          double r = (b.y - a.y) * (c.x - a.x);
          double res = l - r;
-         double eps = (fabs(l) + fabs(r)) * 8 * std::numeric_limits<double>::epsilon();
+         double eps = (fabs(l) + fabs(r)) * 4 * std::numeric_limits<double>::epsilon();
 
          if (res > eps)
             return CG_LEFT;
