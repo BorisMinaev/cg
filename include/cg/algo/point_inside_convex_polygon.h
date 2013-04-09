@@ -12,20 +12,11 @@ namespace cg
    template<typename T>
    inline bool point_inside_convex_polygon(contour_2t<T> const & a, point_2t<T> const & b)
    {
-      if (a.vertices_num() < 3)
-         return false;
-      if (orientation(a[0], a[1], b) < 0)
-         return false;
-      if (orientation(a[0], a[a.vertices_num() - 1], b) > 0)
-         return false;
-
-      auto it = std::lower_bound(a.begin(), a.end(), b, [&a](const point_2t<T> &lhs, const point_2t<T> &rhs) {
-                         return orientation(a[0], lhs, rhs) >= 0;
+      auto it = std::upper_bound(a.begin(), a.end(), b, [&a](const point_2t<T> &lhs, const point_2t<T> &rhs) {
+                         return orientation(a[0], lhs, rhs) > 0;
       });
-
-      if (it == a.end()) {
+      if (it == a.end() && orientation(a[0], *(it-1), b) <= 0) 
          it--;
-      }
-      return orientation(*(it-1), *it, b) >= 0;
+      return it != a.begin() && it != a.end() && orientation(*(it-1), *it, b) >= 0;
    }
 }
