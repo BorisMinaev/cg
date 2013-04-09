@@ -38,6 +38,10 @@ TEST(test2, tests)
    EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(8, 5)), false);
    EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(6, 7)), false);
    EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(2.5, 3.5)), true);
+   EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(2, 1)), false);
+   EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(2, 1.5)), false);
+   EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(2.5, 1.5)), true);
+   EXPECT_EQ(point_inside_convex_polygon(tr, cg::point_2(2.5, 1.45)), false);
 }
 
 TEST(test3, tests)

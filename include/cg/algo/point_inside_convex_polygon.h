@@ -10,13 +10,27 @@
 namespace cg
 {
    template<typename T>
-   inline bool point_inside_convex_polygon(contour_2t<T> const & a, point_2t<T> const & b)
+   /*
+   inline bool point_inside_convex_polygon(contour_2t<T> const & a, point_2t<T> const & p)
    {
-      auto it = std::upper_bound(a.begin(), a.end(), b, [&a](const point_2t<T> &lhs, const point_2t<T> &rhs) {
-                         return orientation(a[0], lhs, rhs) > 0;
+      if (orientation(a[0], a[1], p) == CG_RIGHT)
+         return false;
+      auto it = std::lower_bound(a.begin(), a.end(), p, [&a](const point_2t<T> &lhs, const point_2t<T> &rhs) {
+                         return orientation(a[0], lhs, rhs) == CG_LEFT;
       });
-      if (it == a.end() && orientation(a[0], *(it-1), b) <= 0) 
-         it--;
-      return it != a.begin() && it != a.end() && orientation(*(it-1), *it, b) >= 0;
+      if (it == a.end()) 
+         return false;
+      return orientation(*(it-1), *it, p) != CG_RIGHT;
    }
+*/
+   inline bool point_inside_convex_polygon(contour_2t<T> const & cont, point_2t<T> const & p) {
+       if (orientation(cont[0], cont[1], p) == CG_RIGHT) return false;
+       auto it = std::lower_bound(cont.begin() + 2, cont.end(), p, [&cont](const point_2t<T> &lhs, const point_2t<T> &rhs) {
+         return orientation(cont[0], lhs, rhs) == CG_LEFT;
+       });
+    if (it == cont.end()) {
+        return false;
+    }
+    return orientation(*(it - 1), *it, p) != CG_RIGHT;
+     }
 }
