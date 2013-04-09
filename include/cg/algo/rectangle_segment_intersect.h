@@ -10,8 +10,12 @@ namespace cg
    {
       if (a.contains(b[0]) || a.contains(b[1]))
          return true;
-      segment_2t<T> diag1(a.corner(0, 0), a.corner(1, 1));
-      segment_2t<T> diag2(a.corner(1, 0), a.corner(0, 1));
-      return segment_intersect(diag1, b) || segment_intersect(diag2, b);
+      point_2t<T> max_point = b[0];
+      point_2t<T> min_point = b[1];
+      if (max_point.y < min_point.y)
+      	std::swap(min_point, max_point);
+      if (min_point.x > max_point.x)
+      	return segment_intersect(segment_2t<T>(a.corner(0, 0), a.corner(1, 1)), b);
+      return segment_intersect(segment_2t<T>(a.corner(1, 0), a.corner(0, 1)), b);
    }
 }
