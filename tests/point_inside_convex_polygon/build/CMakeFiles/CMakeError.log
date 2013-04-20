@@ -1,0 +1,53 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1152335871/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1152335871.dir/build.make CMakeFiles/cmTryCompileExec1152335871.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1152335871.dir/CheckSymbolExists.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec1152335871.dir/CheckSymbolExists.c.o   -c /home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1152335871
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1152335871.dir/link.txt --verbose=1
+/usr/bin/gcc         CMakeFiles/cmTryCompileExec1152335871.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1152335871 -rdynamic 
+CMakeFiles/cmTryCompileExec1152335871.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: ошибка: выполнение ld завершилось с кодом возврата 1
+make[1]: *** [cmTryCompileExec1152335871] Ошибка 1
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1152335871/fast] Ошибка 2
+
+File /home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec200939671/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec200939671.dir/build.make CMakeFiles/cmTryCompileExec200939671.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec200939671.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec200939671.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec200939671
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec200939671.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec200939671.dir/CheckFunctionExists.c.o  -o cmTryCompileExec200939671 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: ошибка: выполнение ld завершилось с кодом возврата 1
+make[1]: *** [cmTryCompileExec200939671] Ошибка 1
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec200939671/fast] Ошибка 2
+
+

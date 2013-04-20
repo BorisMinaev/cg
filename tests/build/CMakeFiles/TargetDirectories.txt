@@ -1,0 +1,2 @@
+/home/qwerty787788/cpp/cg/tests/build/CMakeFiles/cg-test.dir
+/home/qwerty787788/cpp/cg/tests/build/CMakeFiles/cg_test_headers.dir

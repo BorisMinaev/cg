@@ -1,0 +1,2 @@
+/home/qwerty787788/cpp/cg/tests/segment_intersection/build/CMakeFiles/cg_test_headers.dir
+/home/qwerty787788/cpp/cg/tests/segment_intersection/build/CMakeFiles/intersection-test.dir

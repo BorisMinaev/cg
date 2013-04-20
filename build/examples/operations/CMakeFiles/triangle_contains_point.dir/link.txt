@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall    CMakeFiles/triangle_contains_point.dir/triangle_contains_point.cpp.o  -o triangle_contains_point -rdynamic ../../src/libvisualization.a -lgmp -lQtOpenGL -lQtGui -lQtCore -lGLU -lGL -lX11 -lXext 

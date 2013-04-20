@@ -1,0 +1,143 @@
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2706844407/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2706844407.dir/build.make CMakeFiles/cmTryCompileExec2706844407.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2706844407.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++11 -Wall   -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec2706844407.dir/CheckSymbolExists.cxx.o -c /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: В функции «int main(int, char**)»:
+/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: ошибка: нет декларации «Q_WS_WIN» в этой области видимости
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec2706844407.dir/CheckSymbolExists.cxx.o] Ошибка 1
+make: *** [cmTryCompileExec2706844407/fast] Ошибка 2
+
+File /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3368938944/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3368938944.dir/build.make CMakeFiles/cmTryCompileExec3368938944.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3368938944.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++11 -Wall   -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec3368938944.dir/CheckSymbolExists.cxx.o -c /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: В функции «int main(int, char**)»:
+/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: ошибка: нет декларации «Q_WS_QWS» в этой области видимости
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec3368938944.dir/CheckSymbolExists.cxx.o] Ошибка 1
+make: *** [cmTryCompileExec3368938944/fast] Ошибка 2
+
+File /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2884971183/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2884971183.dir/build.make CMakeFiles/cmTryCompileExec2884971183.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2884971183.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++11 -Wall   -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec2884971183.dir/CheckSymbolExists.cxx.o -c /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: В функции «int main(int, char**)»:
+/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: ошибка: нет декларации «Q_WS_MAC» в этой области видимости
+make[1]: *** [CMakeFiles/cmTryCompileExec2884971183.dir/CheckSymbolExists.cxx.o] Ошибка 1
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec2884971183/fast] Ошибка 2
+
+File /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3202291555/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3202291555.dir/build.make CMakeFiles/cmTryCompileExec3202291555.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3202291555.dir/CheckSymbolExists.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec3202291555.dir/CheckSymbolExists.c.o   -c /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec3202291555
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3202291555.dir/link.txt --verbose=1
+/usr/bin/gcc         CMakeFiles/cmTryCompileExec3202291555.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3202291555 -rdynamic 
+CMakeFiles/cmTryCompileExec3202291555.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: ошибка: выполнение ld завершилось с кодом возврата 1
+make[1]: *** [cmTryCompileExec3202291555] Ошибка 1
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec3202291555/fast] Ошибка 2
+
+File /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1634680035/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1634680035.dir/build.make CMakeFiles/cmTryCompileExec1634680035.dir/build
+make[1]: Вход в каталог `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1634680035.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec1634680035.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1634680035
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1634680035.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec1634680035.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1634680035 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: ошибка: выполнение ld завершилось с кодом возврата 1
+make[1]: *** [cmTryCompileExec1634680035] Ошибка 1
+make[1]: Выход из каталога `/home/qwerty787788/cpp/cg/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1634680035/fast] Ошибка 2
+
+

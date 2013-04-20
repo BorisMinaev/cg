@@ -1,0 +1,3 @@
+/home/qwerty787788/cpp/cg/examples/build/convex_hull/CMakeFiles/graham_hull.dir
+/home/qwerty787788/cpp/cg/examples/build/operations/CMakeFiles/triangle_contains_point.dir
+/home/qwerty787788/cpp/cg/examples/build/viewer/CMakeFiles/viewer-example.dir

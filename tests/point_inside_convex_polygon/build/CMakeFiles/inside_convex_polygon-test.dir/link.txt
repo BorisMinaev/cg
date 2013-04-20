@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall    CMakeFiles/inside_convex_polygon-test.dir/inside_polygon.cpp.o  -o inside_convex_polygon-test -rdynamic /usr/local/lib/libgtest.a /usr/local/lib/libgtest_main.a -lgmp -lgtest -lgtest_main -lpthread 

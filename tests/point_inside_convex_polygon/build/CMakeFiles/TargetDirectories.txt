@@ -1,0 +1,2 @@
+/home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/cg_test_headers.dir
+/home/qwerty787788/cpp/cg/tests/point_inside_convex_polygon/build/CMakeFiles/inside_convex_polygon-test.dir

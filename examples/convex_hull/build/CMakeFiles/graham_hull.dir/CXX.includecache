@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/qwerty787788/cpp/cg/examples/convex_hull/graham_hull.cpp
+QColor
+-
+QApplication
+-
+boost/optional.hpp
+-
+cg/visualization/viewer_adapter.h
+-
+cg/visualization/draw_util.h
+-
+cg/io/point.h
+-
+cg/primitives/point.h
+-
+cg/convex_hull/graham.h
+-
+

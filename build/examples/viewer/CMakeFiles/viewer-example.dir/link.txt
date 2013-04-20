@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall    CMakeFiles/viewer-example.dir/viewer.cpp.o  -o viewer-example -rdynamic ../../src/libvisualization.a -lQtOpenGL -lQtGui -lQtCore -lGLU -lGL -lX11 -lXext 

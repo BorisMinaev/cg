@@ -1,0 +1,7 @@
+/home/qwerty787788/cpp/cg/build/tests/CMakeFiles/cg-test.dir
+/home/qwerty787788/cpp/cg/build/tests/CMakeFiles/cg_test_headers.dir
+/home/qwerty787788/cpp/cg/build/examples/convex_hull/CMakeFiles/graham_hull.dir
+/home/qwerty787788/cpp/cg/build/examples/operations/CMakeFiles/triangle_contains_point.dir
+/home/qwerty787788/cpp/cg/build/examples/viewer/CMakeFiles/viewer-example.dir
+/home/qwerty787788/cpp/cg/build/src/CMakeFiles/visualization.dir
+/home/qwerty787788/cpp/cg/build/include/CMakeFiles/visualization_headers.dir

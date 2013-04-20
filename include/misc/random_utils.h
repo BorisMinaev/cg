@@ -35,11 +35,11 @@ namespace util
         }
     };
 
-    template<class Int, class RandomDevice = std::random_device>
+    template<class Int, class RandomDevice = boost::random::mt19937>
     using uniform_random_int = random_generator<Int,
           std::uniform_int_distribution<Int>, RandomDevice>;
 
-    template<class Real, class RandomDevice = std::random_device>
+    template<class Real, class RandomDevice = boost::random::mt19937>
     using uniform_random_real = random_generator<Real,
           std::uniform_real_distribution<Real>, RandomDevice>;
 

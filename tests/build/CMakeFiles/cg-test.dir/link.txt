@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++0x -Wall    CMakeFiles/cg-test.dir/convex_hull.cpp.o  -o cg-test -rdynamic /usr/local/lib/libgtest.a /usr/local/lib/libgtest_main.a -lgmp -lgtest -lgtest_main -lpthread 

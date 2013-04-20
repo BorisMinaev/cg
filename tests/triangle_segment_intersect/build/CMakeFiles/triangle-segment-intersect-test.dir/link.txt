@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/triangle-segment-intersect-test.dir/triangle_segment_intersect_test.cpp.o  -o triangle-segment-intersect-test -rdynamic /usr/local/lib/libgtest.a /usr/local/lib/libgtest_main.a -lgmp -lgtest -lgtest_main -lpthread 
