@@ -93,3 +93,29 @@ TEST(convex_hull, my_test_3)
   auto zz = cg::graham_andrew_hull(pts.begin(), pts.end());
    EXPECT_TRUE(is_convex_hull(pts.begin(), zz, pts.end()));
 } 
+
+TEST(convex_hull, one_point)
+{
+   using cg::point_2;
+
+   std::vector<point_2> pts = boost::assign::list_of(point_2(0, 0));
+   EXPECT_TRUE(is_convex_hull(pts.begin(), cg::graham_andrew_hull(pts.begin(), pts.end()), pts.end()));
+} 
+
+
+TEST(convex_hull, one_point_2)
+{
+   using cg::point_2;
+
+   std::vector<point_2> pts = boost::assign::list_of(point_2(0, 0))(point_2(0, 0));
+   EXPECT_TRUE(is_convex_hull(pts.begin(), cg::graham_andrew_hull(pts.begin(), pts.end()), pts.end()));
+} 
+
+TEST(convex_hull, two_points)
+{
+   using cg::point_2;
+
+   std::vector<point_2> pts = boost::assign::list_of(point_2(0, 0))(point_2(1, 1));
+   EXPECT_TRUE(is_convex_hull(pts.begin(), cg::graham_andrew_hull(pts.begin(), pts.end()), pts.end()));
+} 
+

@@ -80,23 +80,6 @@ namespace cg
       std::sort(min, bound);
       std::sort(bound, q);
       std::reverse(bound, q);
-      /*
-
-
-            for (auto zz = min; zz != bound; zz++)
-         print_p(zz);
-      std::cout << std::endl;
-      for (auto zz = bound; zz != q; zz++)
-         print_p(zz);
-
-*/
-
-      //for (auto zz = min; zz != q; zz++) {
-      //   print_p(zz);
-     // }
-      //BidIter pt = contour_graham_hull(min, q);
-      //for (auto zz = min; zz != pt; zz++)
-       //   print_p(zz);
 
       return contour_graham_hull(min, q);
    }
