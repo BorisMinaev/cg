@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cg/primitives/segment.h>
+#include <cg/algo/segment_intersect.h>
 #include <cg/operations/orientation.h>
 #include <boost/numeric/interval.hpp>
 #include <cmath>
@@ -9,13 +10,13 @@
 
 namespace cg
 {
-   typedef boost::numeric::interval_lib::unprotect<boost::numeric::interval<float> >::type interval;
+   typedef boost::numeric::interval_lib::unprotect<boost::numeric::interval<double> >::type interval;
 
    struct new_line {
-      segment_2f s;
+      segment_2d s;
       interval A, B, C;
 
-      new_line(segment_2f s) : s(s) {
+      new_line(segment_2d s) : s(s) {
          A = interval(s[1].y - s[0].y);
          B = interval(s[0].x - s[1].x);
          C = -(s[0].x * A + s[0].y * B);
@@ -47,17 +48,17 @@ namespace cg
    }
 
    struct new_point {
-      float x, y;
+      double x, y;
       bool is_precise;
-      segment_2f s1, s2;
+      segment_2d s1, s2;
       point_2t<interval> interval_value;
 
       new_point() {};
 
-      new_point(float x, float y) : x(x), y(y), is_precise(true) {
+      new_point(double x, double y) : x(x), y(y), is_precise(true) {
          interval_value = point_2t<interval>(interval(x), interval(y));
       };
-      new_point(segment_2f s1, segment_2f s2) : is_precise(false), s1(s1), s2(s2) {
+      new_point(segment_2d s1, segment_2d s2) : is_precise(false), s1(s1), s2(s2) {
          interval_value = intersection(new_line(s1), new_line(s2));
       };
    };
@@ -163,12 +164,101 @@ namespace cg
       }
    }
 
-   std::vector<point_2f> segments_intersection(std::vector<segment_2f> & segments) {
-      std::vector<point_2f> result;
-      //result.push_back(point_2f(5.0, 5.0));
+   enum EVENT_TYPE {NEW_SEGMENT, END_SEGMENT, SEGMENT_INTERSECTION};
+
+   struct event {
+      new_point time;
+      EVENT_TYPE type;
+      segment_2d s1, s2;
+      event(new_point time, EVENT_TYPE type, segment_2d s) : time(time), type(type), s1(s) {};
+      event(new_point time, EVENT_TYPE type, segment_2d s1, segment_2d s2) : time(time), type(type), s1(s1), s2(s2) {};
+   };
+
+   bool cmp(segment_2d const & a, segment_2d const & b) {
+      if (a[0] == b[0])
+         return a[1] < b[1];
+      return a[0] < b[0];
+   }
+
+   inline bool mless(event const & a, event const & b) {
+      if (a.time == b.time) {
+         if (a.type == b.type) {
+            if (!cmp(a.s1, b.s1) && !cmp(b.s1, a.s1))
+               return cmp(a.s2, b.s2);
+            return cmp(a.s1, b.s1);
+         }
+         return a.type < b.type;
+      }
+      return mless(a.time, b.time);
+   }
+
+   std::vector<point_2> segments_intersection(std::vector<segment_2d> & segments) {
+      std::vector<point_2> result;
+      //result.push_back(point_2(5.0, 5.0));
       new_point cur_time;
       auto comp = [&](const new_line& lhs, const new_line& rhs) -> bool { return mless(lhs, rhs, cur_time); };
       auto status = std::set <new_line, decltype(comp)> (comp);
+      auto comp2 = [&](const event& lhs, const event& rhs) -> bool { return mless(lhs, rhs); };
+      auto events = std::set <event, decltype(comp2)> (comp2);
+      for (segment_2d seg : segments) {
+         events.insert(event(new_point(min(seg).x, min(seg).y), NEW_SEGMENT, seg));
+         events.insert(event(new_point(max(seg).x, max(seg).y), END_SEGMENT, seg));
+      }
+
+      while (events.size() > 0) {
+         event cur_event = *events.begin();
+         events.erase(cur_event);
+         std::vector<event> current_time_events;
+         current_time_events.push_back(cur_event);
+         while (events.size() > 0) {
+            event new_event = *events.begin();
+            if (new_event.time == cur_event.time) {
+               events.erase(new_event);
+               current_time_events.push_back(new_event);
+            } else {
+               break;
+            }
+         }
+         bool has_intersection = current_time_events.size() > 1;
+         for (auto event : current_time_events) {
+            if (event.type == END_SEGMENT) {
+               status.erase(event.s1);
+            } else {
+               if (event.type == SEGMENT_INTERSECTION) {
+                  status.erase(new_line(event.s1));
+                  status.erase(new_line(event.s2));
+               }
+            }
+         }
+         cur_time = cur_event.time;
+         for (auto cevent : current_time_events) {
+            if (cevent.type != NEW_SEGMENT) {
+               if (cevent.type == NEW_SEGMENT) {
+                  new_line nl(cevent.s1);
+                  auto lower = status.lower_bound(nl);
+                  if (lower != status.end()) {
+                     if (segment_intersect((*lower).s, nl.s)) {
+                        events.insert(event(new_point((*lower).s, nl.s), SEGMENT_INTERSECTION, (*lower).s, nl.s));
+                     }
+                  }
+                  auto upper = status.upper_bound(nl);
+                  if (upper != status.end()) {
+                     if (segment_intersect((*upper).s, nl.s)) {
+                        events.insert(event(new_point((*upper).s, nl.s), SEGMENT_INTERSECTION, (*upper).s, nl.s));
+                     }
+                  }
+                  status.insert(nl);
+               } else {
+                  has_intersection = true;
+               }
+            }
+         }
+         if (has_intersection) {
+            double x = 0.5 * (cur_event.time.interval_value.x.lower() + cur_event.time.interval_value.x.upper());
+            double y = 0.5 * (cur_event.time.interval_value.y.lower() + cur_event.time.interval_value.y.upper());
+            result.push_back(point_2(x, y));
+         }
+      }
       return result;
    }
 }
