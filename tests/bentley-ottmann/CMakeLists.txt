@@ -33,3 +33,6 @@ link_directories($ENV{GTEST_ROOT}/mybuild)
 target_link_libraries(${PROJECT_NAME} gtest gtest_main)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
+
+# c++11
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
