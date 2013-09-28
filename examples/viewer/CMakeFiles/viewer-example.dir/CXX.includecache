@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/qwerty787788/university/cg/examples/viewer/viewer.cpp
+vector
+-
+stack
+-
+QColor
+-
+QApplication
+-
+boost/optional.hpp
+-
+cg/visualization/viewer_adapter.h
+/home/qwerty787788/university/cg/examples/viewer/cg/visualization/viewer_adapter.h
+cg/visualization/draw_util.h
+/home/qwerty787788/university/cg/examples/viewer/cg/visualization/draw_util.h
+cg/io/point.h
+/home/qwerty787788/university/cg/examples/viewer/cg/io/point.h
+

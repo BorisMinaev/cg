@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/convex_hull.dir/convex_hull.cpp.o  -o convex_hull -rdynamic -lvisualization 

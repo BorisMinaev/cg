@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/douglas_peucker.dir/douglas_peucker.cpp.o  -o douglas_peucker -rdynamic -lvisualization 

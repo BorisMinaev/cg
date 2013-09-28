@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/segments_intersect.dir/segments_intersect.cpp.o  -o segments_intersect -rdynamic -lvisualization 

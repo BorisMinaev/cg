@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/triangulation.dir/triangulation.cpp.o  -o triangulation -rdynamic -lvisualization 
