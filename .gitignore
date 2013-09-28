@@ -1,5 +1,6 @@
 *.user
 *.autosave
 *.un~
+CMakeFiles
 build
 .DS_Store
