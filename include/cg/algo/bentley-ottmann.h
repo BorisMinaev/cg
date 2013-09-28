@@ -7,6 +7,7 @@
 #include <cmath>
 #include <gmpxx.h>
 #include <set>
+#include <fstream>
 
 namespace cg
 {
@@ -63,6 +64,20 @@ namespace cg
       };
    };
 
+   std::ostream & operator << (std::ostream & out, new_point const & p) {
+      out.precision(6);
+      double x = p.is_precise ? p.x : ((p.interval_value.x.lower() + p.interval_value.x.upper())/2);
+      double y = p.is_precise ? p.y : ((p.interval_value.y.lower() + p.interval_value.y.upper())/2);
+      out << x << " " << y;
+      return out;
+   }
+
+   std::ostream & operator << (std::ostream & out, new_line const & p) {
+      out.precision(6);
+      out << p.s[0].x<< " " << p.s[0].y << " " <<p.s[1].x<<" " << p.s[1].y << std::endl;
+      return out;
+   }
+
    bool less_rational(new_point const & pp1, new_point const & pp2) {
       point_2t<mpq_class> p1 = intersection_mpq(new_line(pp1.s1), new_line(pp1.s2));
       point_2t<mpq_class> p2 = intersection_mpq(new_line(pp2.s1), new_line(pp2.s2));
@@ -82,8 +97,9 @@ namespace cg
    }
 
    bool mless(new_point const & p1, new_point const & p2) {
-      if (p1.is_precise && p2.is_precise)
+      if (p1.is_precise && p2.is_precise) {
          return (p1.x < p2.x) || (p1.x == p2.x && p1.y < p2.y);
+      }
       if (!p1.is_precise && !p2.is_precise) {
          if (p1.interval_value.x.upper() < p2.interval_value.x.lower())
             return true;
@@ -110,7 +126,7 @@ namespace cg
    }
 
    inline bool operator == (new_point const & a, new_point const & b) {
-      return !mless(a, b) && !mless(a, b);
+      return !mless(a, b) && !mless(b, a);
    }
 
    inline bool operator != (new_point const & a, new_point const & b) {
@@ -151,15 +167,20 @@ namespace cg
 
    bool mless(new_line l1, new_line l2, new_point cur_time) {
       // TODO: check parallel && vertical segments
+      std::cout << "ASK SEGMENTS" << std::endl;
+      std::cout << l1 << l2;
       new_point intersection_point(l1.s, l2.s);
       int vec = vect_mul(new_point(l1.s[0].x, l1.s[0].y), new_point(l1.s[1].x, l1.s[1].y), new_point(l2.s[0].x, l2.s[0].y));
       if (intersection_point != cur_time) {
          if (intersection_point < cur_time) {
+            std::cout << "res is " << (vec <= 0) << std::endl;
             return vec <= 0;
          } else {
+            std::cout << "res is " << (vec >= 0) << std::endl;
             return vec >= 0;
          }
       } else {
+         std::cout << "res is " << (vec <= 0) << std::endl;
          return vec <= 0;
       }
    }
@@ -207,18 +228,23 @@ namespace cg
 
       while (events.size() > 0) {
          event cur_event = *events.begin();
+         std::cout << "cur event: " << cur_event.time<< " " << cur_event.type << std::endl;
          events.erase(cur_event);
          std::vector<event> current_time_events;
          current_time_events.push_back(cur_event);
          while (events.size() > 0) {
+            std::cout << " more events?" << std::endl;
             event new_event = *events.begin();
+            std::cout << "new event: " << new_event.time<< " " << new_event.type << std::endl;
             if (new_event.time == cur_event.time) {
+               std::cout << "get it" << std::endl;
                events.erase(new_event);
                current_time_events.push_back(new_event);
             } else {
                break;
             }
          }
+         std::cout << "total # of events is " << current_time_events.size() << std::endl;
          bool has_intersection = current_time_events.size() > 1;
          for (auto event : current_time_events) {
             if (event.type == END_SEGMENT) {
@@ -232,22 +258,28 @@ namespace cg
          }
          cur_time = cur_event.time;
          for (auto cevent : current_time_events) {
-            if (cevent.type != NEW_SEGMENT) {
+            if (cevent.type != END_SEGMENT) {
                if (cevent.type == NEW_SEGMENT) {
+                  std::cout << "cUR SIZE IS " << status.size() << std::endl;
                   new_line nl(cevent.s1);
                   auto lower = status.lower_bound(nl);
                   if (lower != status.end()) {
+
+                        std::cout << "!!!!" << std::endl;
                      if (segment_intersect((*lower).s, nl.s)) {
                         events.insert(event(new_point((*lower).s, nl.s), SEGMENT_INTERSECTION, (*lower).s, nl.s));
                      }
                   }
                   auto upper = status.upper_bound(nl);
                   if (upper != status.end()) {
+
+                        std::cout << "?????" << std::endl;  
                      if (segment_intersect((*upper).s, nl.s)) {
                         events.insert(event(new_point((*upper).s, nl.s), SEGMENT_INTERSECTION, (*upper).s, nl.s));
                      }
                   }
                   status.insert(nl);
+                  std::cout << "cUR SIZE IS " << status.size() << std::endl;
                } else {
                   has_intersection = true;
                }
@@ -259,6 +291,9 @@ namespace cg
             result.push_back(point_2(x, y));
          }
       }
+      std::cout << "My answer is: "<< std::endl;
+      for (auto  p : result)
+         std::cout << p.x << " " << p.y << std::endl;
       return result;
    }
 }
