@@ -43,8 +43,9 @@ namespace cg
    OutIter douglas_peucker(BidIter begin, BidIter end, OutIter out, double eps, bool needOutFirst = true) {
       point_2 point_begin = *begin;
       point_2 point_end = *(end - 1);
-      if (needOutFirst) 
+      if (needOutFirst) {
          *out++ = point_begin;
+      }
       if (begin + 1 == end && needOutFirst)
          return out;
       if (begin == end)
@@ -63,7 +64,7 @@ namespace cg
          return out;
       }
       douglas_peucker(begin, (maxIter+1), out, eps, false);
-      douglas_peucker((maxIter+1), end, out, eps, false);
+      douglas_peucker(maxIter+1, end, out, eps, false);
       return out;
    }
 }
