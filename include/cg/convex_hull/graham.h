@@ -72,6 +72,7 @@ namespace cg
                            case CG_RIGHT: return false;
                            case CG_COLLINEAR: return a < b;
                            }
+                            return false;
                         }
                );
 
