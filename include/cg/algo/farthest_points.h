@@ -29,6 +29,22 @@ typedef boost::numeric::interval_lib::unprotect<boost::numeric::interval<double>
 template<class Scalar>
 bool is_farther(point_2t<Scalar> a, point_2t<Scalar> b, point_2t<Scalar> c, point_2t<Scalar> d) {
     {
+        double eps = std::numeric_limits<double>::epsilon() * 8;
+        double dx1 = double(b.x) - a.x;
+        double dy1 = double(b.y) - a.y;
+        double dx2 = double(c.x) - a.x;
+        double dy2 = double(c.y) - a.y;
+        double dx3 = double(d.x) - a.x;
+        double dy3 = double(d.y) - a.y;
+        double vec_mul1 = abs(dx1 * dy2 - dx2 * dy1);
+        double vec_mul2 = abs(dx1 * dy3 - dx3 * dy1);
+        eps *= (vec_mul1 + vec_mul2);
+        if (vec_mul2 > vec_mul1 + eps)
+            return true;
+        if (vec_mul2 + eps <= vec_mul1)
+            return false;
+    }
+    {
         interval dx1 = interval(b.x) - a.x;
         interval dy1 = interval(b.y) - a.y;
         interval dx2 = interval(c.x) - a.x;
