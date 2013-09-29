@@ -161,3 +161,59 @@ TEST(simple, test7)
 }
 
 
+TEST(simple, test8)
+{
+    using cg::point_2;
+    using cg::segment_2;
+
+    segment_2 s1(point_2(0.0, 0.0), point_2(10.0, 0.0));
+    segment_2 s2(point_2(-5.0, 5.0), point_2(15.0, 3.0));
+    segment_2 s3(point_2(3.0, 3.0), point_2(4.0, 12.0));
+
+    std::vector<segment_2> a;
+    a.push_back(s1);
+    a.push_back(s2);
+    a.push_back(s3);
+
+    EXPECT_EQ(cg::segments_intersection(a).size(),1);
+}
+
+TEST(simple, test9)
+{
+    using cg::point_2;
+    using cg::segment_2;
+
+    segment_2 s1(point_2(0.0, 0.0), point_2(8.0, 6.0));
+    segment_2 s2(point_2(8.0, 7.0), point_2(5.0, 2.0));
+    segment_2 s3(point_2(4.0, 1.0), point_2(6.0, -1.0));
+    segment_2 s4(point_2(3.0, 0.0), point_2(8.0, 0.0));
+
+    std::vector<segment_2> a;
+    a.push_back(s1);
+    a.push_back(s2);
+    a.push_back(s3);
+    a.push_back(s4);
+
+    EXPECT_EQ(cg::segments_intersection(a).size(),2);
+}
+
+TEST(simple, test10)
+{
+    using cg::point_2;
+    using cg::segment_2;
+
+    segment_2 s1(point_2(0.0, 0.0), point_2(100.0, 0.0));
+    segment_2 s2(point_2(0.0, 2.0), point_2(5.0, -3.0));
+    segment_2 s3(point_2(3.0, -3.0), point_2(8.0, 2.0));
+    segment_2 s4(point_2(2.0, -2.0), point_2(4.5, -1.0));
+
+    std::vector<segment_2> a;
+    a.push_back(s1);
+    a.push_back(s2);
+    a.push_back(s3);
+    a.push_back(s4);
+
+    EXPECT_EQ(cg::segments_intersection(a).size(),4);
+}
+
+

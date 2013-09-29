@@ -21,7 +21,7 @@ struct new_line {
         A = interval(s[1].y - s[0].y);
         B = interval(s[0].x - s[1].x);
         C = -(s[0].x * A + s[0].y * B);
-    };
+    }
 };
 
 struct new_line_mpq {
@@ -171,12 +171,20 @@ int vect_mul(new_point const & a, new_point const & b, new_point const & c) {
 
 bool mless(new_line l1, new_line l2, new_point cur_time) {
     int vec = vect_mul(new_point(min(l1.s).x, min(l1.s).y), new_point(max(l1.s).x, max(l1.s).y), new_point(min(l2.s).x, min(l2.s).y));
+    int vec2 = vect_mul(new_point(min(l1.s).x, min(l1.s).y), new_point(max(l1.s).x, max(l1.s).y), new_point(max(l2.s).x, max(l2.s).y));
     if (vec == 0) {
-        int vec2 = vect_mul(new_point(min(l1.s).x, min(l1.s).y), new_point(max(l1.s).x, max(l1.s).y), new_point(max(l2.s).x, max(l2.s).y));
         return vec2 > 0;
     }
     if (!segment_intersect(l1.s, l2.s)){
-        return vec > 0;
+        if (min(l1.s) < min(l2.s)) {
+            point_2 up(min(l2.s).x, min(l2.s).y + 1);
+            new_point inter(segment_2(min(l2.s), up), l1.s);
+            return inter < new_point(min(l2.s));
+        } else {
+            point_2 up(min(l1.s).x, min(l1.s).y + 1);
+            new_point inter(segment_2(min(l1.s), up), l2.s);
+            return new_point(min(l1.s)) < inter;
+        }
     }
     new_point intersection_point(l1.s, l2.s);
     if (intersection_point != cur_time) {
@@ -255,6 +263,23 @@ bool add_to_status(status_type & status, event_type & events, new_point const & 
     return has_intersection;
 }
 
+void erase_from_status(status_type & status, event_type & events, new_point const & cur_time, new_line const & nl) {
+    status.erase(nl);
+    auto lower = status.lower_bound(nl);
+    if (lower != status.begin()) {
+        lower--;
+        auto upper = status.upper_bound(nl);
+        if (upper != status.end()) {
+            if (segment_intersect((*lower).s, (*upper).s)) {
+                event e1(new_point((*lower).s, (*upper).s), SEGMENT_INTERSECTION, (*lower).s, (*upper).s);
+                if (cur_time < e1.time) {
+                    events.insert(e1);
+                }
+            }
+        }
+    }
+}
+
 std::vector<point_2> segments_intersection(std::vector<segment_2> & segments) {
     std::vector<point_2> result;
     new_point cur_time;
@@ -283,7 +308,8 @@ std::vector<point_2> segments_intersection(std::vector<segment_2> & segments) {
         bool has_intersection = current_time_events.size() > 1;
         for (auto event : current_time_events) {
             if (event.type == END_SEGMENT) {
-                status.erase(event.s1);
+                erase_from_status(status, events, cur_event.time, new_line(event.s1));
+                //status.erase(event.s1);
             } else {
                 if (event.type == SEGMENT_INTERSECTION) {
                     status.erase(new_line(event.s1));
@@ -315,7 +341,7 @@ std::vector<point_2> segments_intersection(std::vector<segment_2> & segments) {
     }
     //std::cout << "My answer is: "<< std::endl;
     //for (auto  p : result)
-    //  std::cout << p.x << " " << p.y << std::endl;
+     // std::cout << p.x << " " << p.y << std::endl;
     return result;
     }
 }
