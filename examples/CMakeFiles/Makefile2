@@ -111,7 +111,6 @@ clean: viewer/CMakeFiles/viewer-example.dir/clean
 # Convenience name for "all" pass in the directory.
 operations/all: operations/CMakeFiles/ccw_convex_contains_point.dir/all
 operations/all: operations/CMakeFiles/contour_contains_point.dir/all
-operations/all: operations/CMakeFiles/douglas_peucker.dir/all
 operations/all: operations/CMakeFiles/rectangle_intersects_segment.dir/all
 operations/all: operations/CMakeFiles/segments_intersect.dir/all
 operations/all: operations/CMakeFiles/triangle_contains_point.dir/all
@@ -121,7 +120,6 @@ operations/all: operations/CMakeFiles/triangle_intersects_segment.dir/all
 # Convenience name for "clean" pass in the directory.
 operations/clean: operations/CMakeFiles/ccw_convex_contains_point.dir/clean
 operations/clean: operations/CMakeFiles/contour_contains_point.dir/clean
-operations/clean: operations/CMakeFiles/douglas_peucker.dir/clean
 operations/clean: operations/CMakeFiles/rectangle_intersects_segment.dir/clean
 operations/clean: operations/CMakeFiles/segments_intersect.dir/clean
 operations/clean: operations/CMakeFiles/triangle_contains_point.dir/clean
@@ -200,41 +198,6 @@ operations/CMakeFiles/contour_contains_point.dir/clean:
 
 # clean rule for target.
 clean: operations/CMakeFiles/contour_contains_point.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target operations/CMakeFiles/douglas_peucker.dir
-
-# All Build rule for target.
-operations/CMakeFiles/douglas_peucker.dir/all:
-	$(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/depend
-	$(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/qwerty787788/university/cg/examples/CMakeFiles  5
-	@echo "Built target douglas_peucker"
-.PHONY : operations/CMakeFiles/douglas_peucker.dir/all
-
-# Include target in all.
-all: operations/CMakeFiles/douglas_peucker.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-operations/CMakeFiles/douglas_peucker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/qwerty787788/university/cg/examples/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 operations/CMakeFiles/douglas_peucker.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/qwerty787788/university/cg/examples/CMakeFiles 0
-.PHONY : operations/CMakeFiles/douglas_peucker.dir/rule
-
-# Convenience name for target.
-douglas_peucker: operations/CMakeFiles/douglas_peucker.dir/rule
-.PHONY : douglas_peucker
-
-# clean rule for target.
-operations/CMakeFiles/douglas_peucker.dir/clean:
-	$(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/clean
-.PHONY : operations/CMakeFiles/douglas_peucker.dir/clean
-
-# clean rule for target.
-clean: operations/CMakeFiles/douglas_peucker.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -612,6 +575,56 @@ convex/CMakeFiles/ccw_contour_convex.dir/clean:
 
 # clean rule for target.
 clean: convex/CMakeFiles/ccw_contour_convex.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory douglas_peucker
+
+# Convenience name for "all" pass in the directory.
+douglas_peucker/all: douglas_peucker/CMakeFiles/douglas-peucker.dir/all
+.PHONY : douglas_peucker/all
+
+# Convenience name for "clean" pass in the directory.
+douglas_peucker/clean: douglas_peucker/CMakeFiles/douglas-peucker.dir/clean
+.PHONY : douglas_peucker/clean
+
+# Convenience name for "preinstall" pass in the directory.
+douglas_peucker/preinstall:
+.PHONY : douglas_peucker/preinstall
+
+#=============================================================================
+# Target rules for target douglas_peucker/CMakeFiles/douglas-peucker.dir
+
+# All Build rule for target.
+douglas_peucker/CMakeFiles/douglas-peucker.dir/all:
+	$(MAKE) -f douglas_peucker/CMakeFiles/douglas-peucker.dir/build.make douglas_peucker/CMakeFiles/douglas-peucker.dir/depend
+	$(MAKE) -f douglas_peucker/CMakeFiles/douglas-peucker.dir/build.make douglas_peucker/CMakeFiles/douglas-peucker.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/qwerty787788/university/cg/examples/CMakeFiles  5
+	@echo "Built target douglas-peucker"
+.PHONY : douglas_peucker/CMakeFiles/douglas-peucker.dir/all
+
+# Include target in all.
+all: douglas_peucker/CMakeFiles/douglas-peucker.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+douglas_peucker/CMakeFiles/douglas-peucker.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/qwerty787788/university/cg/examples/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 douglas_peucker/CMakeFiles/douglas-peucker.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/qwerty787788/university/cg/examples/CMakeFiles 0
+.PHONY : douglas_peucker/CMakeFiles/douglas-peucker.dir/rule
+
+# Convenience name for target.
+douglas-peucker: douglas_peucker/CMakeFiles/douglas-peucker.dir/rule
+.PHONY : douglas-peucker
+
+# clean rule for target.
+douglas_peucker/CMakeFiles/douglas-peucker.dir/clean:
+	$(MAKE) -f douglas_peucker/CMakeFiles/douglas-peucker.dir/build.make douglas_peucker/CMakeFiles/douglas-peucker.dir/clean
+.PHONY : douglas_peucker/CMakeFiles/douglas-peucker.dir/clean
+
+# clean rule for target.
+clean: douglas_peucker/CMakeFiles/douglas-peucker.dir/clean
 .PHONY : clean
 
 #=============================================================================

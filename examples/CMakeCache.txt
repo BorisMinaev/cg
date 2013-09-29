@@ -178,6 +178,12 @@ convex-hull-example_BINARY_DIR:STATIC=/home/qwerty787788/university/cg/examples/
 convex-hull-example_SOURCE_DIR:STATIC=/home/qwerty787788/university/cg/examples/convex_hull
 
 //Value Computed by CMake
+douglas-peucker-example_BINARY_DIR:STATIC=/home/qwerty787788/university/cg/examples/bentley_ottmann
+
+//Value Computed by CMake
+douglas-peucker-example_SOURCE_DIR:STATIC=/home/qwerty787788/university/cg/examples/bentley_ottmann
+
+//Value Computed by CMake
 operations-example_BINARY_DIR:STATIC=/home/qwerty787788/university/cg/examples/convex
 
 //Value Computed by CMake
@@ -292,7 +298,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=7
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=9
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -130,20 +130,6 @@ contour_contains_point/fast:
 .PHONY : contour_contains_point/fast
 
 # Convenience name for target.
-operations/CMakeFiles/douglas_peucker.dir/rule:
-	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f CMakeFiles/Makefile2 operations/CMakeFiles/douglas_peucker.dir/rule
-.PHONY : operations/CMakeFiles/douglas_peucker.dir/rule
-
-# Convenience name for target.
-douglas_peucker: operations/CMakeFiles/douglas_peucker.dir/rule
-.PHONY : douglas_peucker
-
-# fast build rule for target.
-douglas_peucker/fast:
-	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/build
-.PHONY : douglas_peucker/fast
-
-# Convenience name for target.
 operations/CMakeFiles/rectangle_intersects_segment.dir/rule:
 	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f CMakeFiles/Makefile2 operations/CMakeFiles/rectangle_intersects_segment.dir/rule
 .PHONY : operations/CMakeFiles/rectangle_intersects_segment.dir/rule
@@ -246,30 +232,6 @@ contour_contains_point.s: contour_contains_point.cpp.s
 contour_contains_point.cpp.s:
 	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f operations/CMakeFiles/contour_contains_point.dir/build.make operations/CMakeFiles/contour_contains_point.dir/contour_contains_point.cpp.s
 .PHONY : contour_contains_point.cpp.s
-
-douglas_peucker.o: douglas_peucker.cpp.o
-.PHONY : douglas_peucker.o
-
-# target to build an object file
-douglas_peucker.cpp.o:
-	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/douglas_peucker.cpp.o
-.PHONY : douglas_peucker.cpp.o
-
-douglas_peucker.i: douglas_peucker.cpp.i
-.PHONY : douglas_peucker.i
-
-# target to preprocess a source file
-douglas_peucker.cpp.i:
-	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/douglas_peucker.cpp.i
-.PHONY : douglas_peucker.cpp.i
-
-douglas_peucker.s: douglas_peucker.cpp.s
-.PHONY : douglas_peucker.s
-
-# target to generate assembly for a file
-douglas_peucker.cpp.s:
-	cd /home/qwerty787788/university/cg/examples && $(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/douglas_peucker.cpp.s
-.PHONY : douglas_peucker.cpp.s
 
 rectangle_intersects_segment.o: rectangle_intersects_segment.cpp.o
 .PHONY : rectangle_intersects_segment.o
@@ -375,7 +337,6 @@ help:
 	@echo "... depend"
 	@echo "... ccw_convex_contains_point"
 	@echo "... contour_contains_point"
-	@echo "... douglas_peucker"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... rectangle_intersects_segment"
@@ -388,9 +349,6 @@ help:
 	@echo "... contour_contains_point.o"
 	@echo "... contour_contains_point.i"
 	@echo "... contour_contains_point.s"
-	@echo "... douglas_peucker.o"
-	@echo "... douglas_peucker.i"
-	@echo "... douglas_peucker.s"
 	@echo "... rectangle_intersects_segment.o"
 	@echo "... rectangle_intersects_segment.i"
 	@echo "... rectangle_intersects_segment.s"

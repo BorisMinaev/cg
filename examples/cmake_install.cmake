@@ -40,6 +40,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   INCLUDE("/home/qwerty787788/university/cg/examples/triangulation/cmake_install.cmake")
   INCLUDE("/home/qwerty787788/university/cg/examples/convex_hull/cmake_install.cmake")
   INCLUDE("/home/qwerty787788/university/cg/examples/convex/cmake_install.cmake")
+  INCLUDE("/home/qwerty787788/university/cg/examples/douglas_peucker/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

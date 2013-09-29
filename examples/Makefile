@@ -141,19 +141,6 @@ contour_contains_point/fast:
 .PHONY : contour_contains_point/fast
 
 #=============================================================================
-# Target rules for targets named douglas_peucker
-
-# Build rule for target.
-douglas_peucker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 douglas_peucker
-.PHONY : douglas_peucker
-
-# fast build rule for target.
-douglas_peucker/fast:
-	$(MAKE) -f operations/CMakeFiles/douglas_peucker.dir/build.make operations/CMakeFiles/douglas_peucker.dir/build
-.PHONY : douglas_peucker/fast
-
-#=============================================================================
 # Target rules for targets named rectangle_intersects_segment
 
 # Build rule for target.
@@ -270,6 +257,19 @@ ccw_contour_convex/fast:
 	$(MAKE) -f convex/CMakeFiles/ccw_contour_convex.dir/build.make convex/CMakeFiles/ccw_contour_convex.dir/build
 .PHONY : ccw_contour_convex/fast
 
+#=============================================================================
+# Target rules for targets named douglas-peucker
+
+# Build rule for target.
+douglas-peucker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 douglas-peucker
+.PHONY : douglas-peucker
+
+# fast build rule for target.
+douglas-peucker/fast:
+	$(MAKE) -f douglas_peucker/CMakeFiles/douglas-peucker.dir/build.make douglas_peucker/CMakeFiles/douglas-peucker.dir/build
+.PHONY : douglas-peucker/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -281,7 +281,6 @@ help:
 	@echo "... viewer-example"
 	@echo "... ccw_convex_contains_point"
 	@echo "... contour_contains_point"
-	@echo "... douglas_peucker"
 	@echo "... rectangle_intersects_segment"
 	@echo "... segments_intersect"
 	@echo "... triangle_contains_point"
@@ -291,6 +290,7 @@ help:
 	@echo "... convex_hull"
 	@echo "... dynamic_convex_hull"
 	@echo "... ccw_contour_convex"
+	@echo "... douglas-peucker"
 .PHONY : help
 
 

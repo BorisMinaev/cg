@@ -2,7 +2,7 @@
 /home/qwerty787788/university/cg/examples/operations/CMakeFiles/ccw_convex_contains_point.dir
 /home/qwerty787788/university/cg/examples/operations/CMakeFiles/contour_contains_point.dir
 /home/qwerty787788/university/cg/examples/convex_hull/CMakeFiles/convex_hull.dir
-/home/qwerty787788/university/cg/examples/operations/CMakeFiles/douglas_peucker.dir
+/home/qwerty787788/university/cg/examples/douglas_peucker/CMakeFiles/douglas-peucker.dir
 /home/qwerty787788/university/cg/examples/convex_hull/CMakeFiles/dynamic_convex_hull.dir
 /home/qwerty787788/university/cg/examples/orientation/CMakeFiles/orientation_contour_ccw.dir
 /home/qwerty787788/university/cg/examples/operations/CMakeFiles/rectangle_intersects_segment.dir

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="operations-example" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\viewer\;CMake Files\operations\;CMake Files\orientation\;CMake Files\triangulation\;CMake Files\convex_hull\;CMake Files\convex\;CMake Files\douglas_peucker\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/qwerty787788/university/cg/examples/operations" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="ccw_convex_contains_point">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/ccw_convex_contains_point" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 ccw_convex_contains_point" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="ccw_convex_contains_point/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/ccw_convex_contains_point" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 ccw_convex_contains_point/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="contour_contains_point">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/contour_contains_point" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 contour_contains_point" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="contour_contains_point/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/contour_contains_point" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 contour_contains_point/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rectangle_intersects_segment">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/rectangle_intersects_segment" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 rectangle_intersects_segment" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rectangle_intersects_segment/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/rectangle_intersects_segment" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 rectangle_intersects_segment/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="segments_intersect">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/segments_intersect" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 segments_intersect" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="segments_intersect/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/segments_intersect" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 segments_intersect/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="triangle_contains_point">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/triangle_contains_point" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 triangle_contains_point" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="triangle_contains_point/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/triangle_contains_point" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 triangle_contains_point/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="triangle_intersects_segment">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/triangle_intersects_segment" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 triangle_intersects_segment" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="triangle_intersects_segment/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/operations/triangle_intersects_segment" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 triangle_intersects_segment/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/operations/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="orientation_contour_ccw">
+         <Option output="/home/qwerty787788/university/cg/examples/orientation/orientation_contour_ccw" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 orientation_contour_ccw" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="orientation_contour_ccw/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/orientation/orientation_contour_ccw" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 orientation_contour_ccw/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/orientation/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="ccw_contour_convex">
+         <Option output="/home/qwerty787788/university/cg/examples/convex/ccw_contour_convex" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 ccw_contour_convex" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="ccw_contour_convex/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/convex/ccw_contour_convex" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 ccw_contour_convex/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/convex/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex/ccw_contour_convex.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/ccw_convex_contains_point.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/contour_contains_point.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/rectangle_intersects_segment.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/segments_intersect.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/triangle_contains_point.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/triangle_intersects_segment.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/orientation/orientation_contour_ccw.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/viewer/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\viewer\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/viewer/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\viewer\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\operations\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\operations\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/orientation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\orientation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/orientation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\orientation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/triangulation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\triangulation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/triangulation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\triangulation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex_hull/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex_hull\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex_hull/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex_hull\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/douglas_peucker/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\douglas_peucker\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/douglas_peucker/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\douglas_peucker\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>

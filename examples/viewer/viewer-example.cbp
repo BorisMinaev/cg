@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="viewer-example" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\viewer\;CMake Files\operations\;CMake Files\orientation\;CMake Files\triangulation\;CMake Files\convex_hull\;CMake Files\convex\;CMake Files\douglas_peucker\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/qwerty787788/university/cg/examples/viewer" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="viewer-example">
+         <Option output="/home/qwerty787788/university/cg/examples/viewer/viewer-example" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 viewer-example" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="viewer-example/fast">
+         <Option output="/home/qwerty787788/university/cg/examples/viewer/viewer-example" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 viewer-example/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/qwerty787788/university/cg/examples/viewer/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/qwerty787788/university/cg/examples/viewer/viewer.cpp">
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/viewer/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\viewer\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/viewer/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\viewer\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\operations\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/operations/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\operations\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/orientation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\orientation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/orientation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\orientation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/triangulation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\triangulation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/triangulation/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\triangulation\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex_hull/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex_hull\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex_hull/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex_hull\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/convex/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\convex\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/douglas_peucker/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\douglas_peucker\" />
+      </Unit>
+      <Unit filename="/home/qwerty787788/university/cg/examples/douglas_peucker/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\douglas_peucker\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
