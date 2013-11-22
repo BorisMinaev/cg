@@ -13,6 +13,12 @@ find_package(Boost COMPONENTS random REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARYDIR})
 
+find_package(CGAL REQUIRED)
+INCLUDE_DIRECTORIES(
+  #  ${CGAL_INCLUDE_DIR}
+)
+ADD_DEFINITIONS(${CGAL_DEFINITIONS})
+
 set(SOURCES
    triangulation.cpp
    orientation.cpp
@@ -23,6 +29,7 @@ set(SOURCES
    douglas_pecker.cpp
    convex.cpp
    bentley_ottmann.cpp
+   #cgal_convex_hull_test.cpp
 )
 
 add_executable(cg-test ${SOURCES})
