@@ -22,9 +22,9 @@ namespace cg
          double a20 = ((c.x) - d.x);
          double a21 = ((c.y) - d.y);
          double a22 = ((c.x)*c.x - (d.x)*d.x) + ((c.y)*c.y - (d.y)*d.y);
-         double det =  a00 * a11 * a22 + a01 * a12 * a20 + a02 * a10 * a21 -
-                         (a20 * a11 * a02 + a21 * a12 * a00 + a01 * a10 * a22);
-         double sum = (fabs(a00) + fabs(a01) + fabs(a12))+(fabs(a10) + fabs(a11) + fabs(a12))+(fabs(a20) + fabs(a21) + fabs(a22));
+         double m1 = a00*a11*a22, m2 = a01*a12*a20, m3 = a02*a10*a21, m4=a20*a11*a02, m5=a21*a12*a00, m6=a01*a10*a22;
+         double det =  m1+m2+m3-m4-m5-m6;
+         double sum = fabs(m1)+fabs(m2)+fabs(m3)+fabs(m4)+fabs(m5)+fabs(m6);
          double eps = sum * 16 * std::numeric_limits<double>::epsilon();
          if (det > eps)
              return true;
