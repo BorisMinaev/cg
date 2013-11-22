@@ -10,9 +10,6 @@
 #include <cg/io/triangle.h>
 #include <cg/io/point.h>
 
-//using std::cout;
-//using std::endl;
-
 namespace cg {
 
 struct FAV_face;
@@ -22,10 +19,11 @@ struct FAV_point {
     bool is_inf;
     FAV_face *first_face;
     bool deleted;
+    int id_in_vector;
 
     FAV_point() {}
     FAV_point(bool inf) : is_inf(inf), deleted(false) {}
-    FAV_point(point_2 point) : point(point), deleted(false), is_inf(false) {}
+    FAV_point(point_2 point) : point(point), is_inf(false), deleted(false) {}
 };
 
 orientation_t orientation(FAV_point const & a, FAV_point const & b, FAV_point const & c) {
@@ -70,6 +68,7 @@ struct FAV_face {
     FAV_face* neighbors[3];
     FAV_point* points[3];
     bool deleted;
+    int id_in_vector;
 
     void print() {
         std::cout << "face [" << *points[0] << ", " <<* points[1] << ", " << *points[2] << "]" << std::endl;
@@ -90,7 +89,7 @@ struct FAV_face {
         return true;
     }
 
-    bool has_point(FAV_point*p) {
+    bool has_point(FAV_point *p) {
         return points[0] == p || points[1] == p || points[2] == p;
     }
 
@@ -100,26 +99,9 @@ struct FAV_face {
                 neighbors[i] = to;
     }
 
-    void rotate_once() {
-        FAV_point* tmp_point = points[0];
-        points[0] = points[1]; points[1] = points[2]; points[2] = tmp_point;
-        FAV_face* tmp_face = neighbors[0];
-        neighbors[0] = neighbors[1]; neighbors[1] = neighbors[2]; neighbors[2] = tmp_face;
-    }
-
-    bool rotate_face(FAV_point const & on_first_edge) {
-        int it = -1;
-        for (int i = 0; i<3; i++) {
-            if (orientation(points[i], points[(i+1)%3], on_first_edge)==CG_COLLINEAR)
-                it = i;
-        }
-        if (it == -1) {
-            return false;
-        }
-        for (int ii = 0; ii < it; ii++) {
-            rotate_once();
-        }
-        return true;
+    void update_points() {
+        for (int i = 0; i < 3; i++)
+            points[i]->first_face = this;
     }
 
     FAV_face(): deleted(false) {}
@@ -139,6 +121,7 @@ struct FAV {
     size_t points_alive;
     std::vector<FAV_point*> points;
     std::vector<FAV_face*> faces;
+    std::vector<FAV_face*> faces_want_to_delete;
     FAV_point* inf;
 
     FAV() {
@@ -159,12 +142,47 @@ struct FAV {
     void clean_points() {
         for (size_t i = 0; i < points.size(); i++) {
             if (points[i]->deleted) {
-//                std::cout << "delete verices" << endl;
                 delete points[i];
                 points[i] = points[points.size() - 1];
                 points.pop_back();
             }
         }
+    }
+
+    void delete_face(FAV_face * face) {
+        face->deleted = true;
+        faces_want_to_delete.push_back(face);
+    }
+
+    void really_delete_faces() {
+        for (size_t i = 0; i < faces_want_to_delete.size(); i++) {
+            FAV_face * face = faces_want_to_delete[i];
+            faces[face->id_in_vector] = faces[faces.size() - 1];
+            faces[face->id_in_vector]->id_in_vector = face->id_in_vector;
+            faces.pop_back();
+            delete face;
+        }
+        faces_want_to_delete.clear();
+    }
+
+    void add_new_face(FAV_face * face) {
+        faces.push_back(face);
+        face->id_in_vector = faces.size() - 1;
+        for (int i = 0; i <3; i++) {
+            face->neighbors[i]->update_neighbor(face);
+        }
+        face->update_points();
+    }
+
+    void add_new_point(FAV_point * point) {
+        points.push_back(point);
+        point->id_in_vector = points.size() - 1;
+    }
+
+    void delete_point(FAV_point * point) {
+        points[point->id_in_vector] = points[points.size() - 1];
+        points.pop_back();
+        delete point;
     }
 
     void check_first_state() {
@@ -183,8 +201,8 @@ struct FAV {
                 f2->neighbors[i] = f1;
             }
             inf->first_face = f1;
-            faces.push_back(f1);
-            faces.push_back(f2);
+            add_new_face(f1);
+            add_new_face(f2);
         }
     }
 
@@ -194,27 +212,18 @@ struct FAV {
         for (int i = 0; i < 3; i++) {
             int opp_point = get_opposite_point(*(face->neighbors[i]), face);
             FAV_point * opp = face->neighbors[i]->points[opp_point];
-            // DO I need both in_circle ?
             if (in_circle(*(face->points[i]), *(face->points[(i+1)%3]),*(face->points[(i+2)%3]), *opp) ||
                     in_circle(*opp, *(face->points[(i+2)%3]), *(face->points[(i+1)%3]),*(face->points[i]))) {
                 FAV_face* f1=new FAV_face(),* f2=new FAV_face();
                 FAV_face* face1 = face, *face2 = face->neighbors[i];
-//                cout << "FLIP FACES:" << endl;
-//                face1->print();
-//                face2->print();
-//                cout << endl;
                 f1->points[0] = face1->points[i]; f1->points[1] = face2->points[opp_point]; f1->points[2] = face1->points[(i+2)%3];
                 f2->points[0] = face2->points[opp_point]; f2->points[1] = face1->points[i]; f2->points[2] = face1->points[(i+1)%3];
                 f1->neighbors[0] = face2->neighbors[(opp_point+2)%3]; f1->neighbors[1] = face1->neighbors[(i+1)%3]; f1->neighbors[2] = f2;
                 f2->neighbors[0] = face1->neighbors[(i+2)%3]; f2->neighbors[1] = face2->neighbors[(opp_point+1)%3]; f2->neighbors[2] = f1;
-                face1->neighbors[(i+1)%3]->update_neighbor(f1);
-                face1->neighbors[(i+2)%3]->update_neighbor(f2);
-                face2->neighbors[(opp_point+1)%3]->update_neighbor(f2);
-                face2->neighbors[(opp_point+2)%3]->update_neighbor(f1);
-                faces.push_back(f1);
-                faces.push_back(f2);
-                face1->deleted = true;
-                face2->deleted = true;
+                add_new_face(f1);
+                add_new_face(f2);
+                delete_face(face1);
+                delete_face(face2);
                 update_flip(f1);
                 update_flip(f2);
                 break;
@@ -223,73 +232,48 @@ struct FAV {
     }
 
     void add_point_to_existing_FAV(FAV_point & p) {
-//        for (int i = 0;i <  faces.size(); i++)
-//            faces[i]->print();
-//        std::cout << std::endl;
-//        std::cout << "check "<< p << std::endl;
-        std::vector<FAV_face*> inside;
         for (size_t i = 0; i < faces.size(); i++)
             if (!faces[i]->deleted) {
                 if (faces[i]->inside(p)) {
-//                    std::cout << "inside " << i << std::endl;
-//                    faces[i]->print();
-                    inside.push_back(faces[i]);
+                    FAV_face* ins = faces[i];
+                    ins->deleted = true;
+                    FAV_face* f1=new FAV_face(),* f2=new FAV_face(),* f3=new FAV_face();
+                    f1->points[0] = ins->points[0]; f1->points[1] = ins->points[1]; f1->points[2] = &p;
+                    f2->points[0] = ins->points[1]; f2->points[1] = ins->points[2]; f2->points[2] = &p;
+                    f3->points[0] = ins->points[2]; f3->points[1] = ins->points[0]; f3->points[2] = &p;
+                    f1->neighbors[0] = f2; f1->neighbors[1] = f3; f1->neighbors[2] = ins->neighbors[2];
+                    f2->neighbors[0] = f3; f2->neighbors[1] = f1; f2->neighbors[2] = ins->neighbors[0];
+                    f3->neighbors[0] = f1; f3->neighbors[1] = f2; f3->neighbors[2] = ins->neighbors[1];
+                    add_new_face(f1);
+                    add_new_face(f2);
+                    add_new_face(f3);
+                    update_flip(f1);
+                    update_flip(f2);
+                    update_flip(f3);
+                    really_delete_faces();
+                    return;
                 }
             }
-        if (inside.size() >= 1) {
-            FAV_face* ins = inside[0];
-            ins->deleted = true;
-            FAV_face* f1=new FAV_face(),* f2=new FAV_face(),* f3=new FAV_face();
-            f1->points[0] = ins->points[0]; f1->points[1] = ins->points[1]; f1->points[2] = &p;
-            f2->points[0] = ins->points[1]; f2->points[1] = ins->points[2]; f2->points[2] = &p;
-            f3->points[0] = ins->points[2]; f3->points[1] = ins->points[0]; f3->points[2] = &p;
-            f1->neighbors[0] = f2; f1->neighbors[1] = f3; f1->neighbors[2] = ins->neighbors[2];
-            f2->neighbors[0] = f3; f2->neighbors[1] = f1; f2->neighbors[2] = ins->neighbors[0];
-            f3->neighbors[0] = f1; f3->neighbors[1] = f2; f3->neighbors[2] = ins->neighbors[1];
-            ins->neighbors[0]->update_neighbor(f2);
-            ins->neighbors[1]->update_neighbor(f3);
-            ins->neighbors[2]->update_neighbor(f1);
-            faces.push_back(f1);
-            faces.push_back(f2);
-            faces.push_back(f3);
-            // TODO: update vertices _first_face
-            update_flip(f1);
-            update_flip(f2);
-            update_flip(f3);
-            return;
-        }
-        error("It can't be truth. Have you add one vertex twice?");
+        error("It can't be truth.");
     }
 
     void add_point(point_2 p) {
-//        std::cout<< "add point "<<p<<std::endl;
         points_alive++;
         FAV_point* new_point = new FAV_point(p);
         points.push_back(new_point);
-//        cout << "now points:" << endl;
-//        for (int i = 0; i < points.size(); i++)
-//            cout << *points[i] << endl;
-//        cout << "!" << endl;
-//        cout << "FACES:"<<endl;
-//        for (size_t i = 0; i < faces.size(); i++)
-//            if (!faces[i]->deleted)
-//            faces[i]->print();
-//        cout << "END FACES"<<endl;
         if (points_alive > 3) {
             add_point_to_existing_FAV(*new_point);
         } else {
             check_first_state();
         }
-//        cout << "FACES:"<<endl;
-//        for (size_t i = 0; i < faces.size(); i++)
-//            if (!faces[i]->deleted)
-//            faces[i]->print();
-//        cout << "END FACES"<<endl;
+    }
+
+    void remove_point(point_2 p) {
+        // TODO: write code here!
     }
 
     std::vector<triangle_2> get_triangulation() {
         std::vector<triangle_2> result;
-//        std::cout << faces.size() << std::endl;
         for (size_t i = 0; i < faces.size(); i++)
             if (!faces[i]->deleted && !faces[i]->contains_inf()) {
                 result.push_back(faces[i]->get_triangle());
@@ -310,11 +294,6 @@ struct FAV {
             alr_exist.insert(cur);
             fav.add_point(cur);
         }
-        /*int n = 50;
-        for (int  i = 0; i < n/2; i++) {
-            double x = 1.0 * (n-i) / n;
-            fav.add_point(point_2(x, x*x));
-        }*/
         return fav.get_triangulation();
     }
 }

@@ -29,6 +29,7 @@ set(SOURCES
    douglas_pecker.cpp
    convex.cpp
    bentley_ottmann.cpp
+   triangulation.cpp
    #cgal_convex_hull_test.cpp
 )
 
