@@ -11,7 +11,7 @@ TEST(triangulation, triangulation_performance)
 {
    using cg::point_2;
 
-   std::vector<point_2> pts = uniform_points(2000, 787788);
+   std::vector<point_2> pts = uniform_points(10000, 787788);
 
    cg::make_triangulation(pts.begin(), pts.end());
 }
