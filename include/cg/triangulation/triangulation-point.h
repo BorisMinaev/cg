@@ -132,11 +132,14 @@ struct FAV {
     std::vector<FAV_face*> faces;
     std::vector<FAV_face*> faces_want_to_delete;
     FAV_point* inf;
+    FAV_face *f1, *f2;
 
     FAV() {
         inf = new FAV_point(true);
         points.push_back(inf);
         points_alive = 1;
+        f1 = new FAV_face();
+        f2 = new FAV_face();
     }
 
     ~FAV() {
@@ -201,9 +204,7 @@ struct FAV {
         std::vector<FAV_point*> points;
         get_all_neighbors(start_from, points);
         bool changed = false;
-        for (size_t i = 1; i < points.size(); i++) {
-            if (points[i]->deleted)
-                continue;
+        for (size_t i = 0; i < points.size(); i++) {
             if (start_from->deleted || start_from->is_inf) {
                 start_from = points[i];
                 changed = true;
@@ -296,18 +297,25 @@ struct FAV {
             FAV_point * opp = face->neighbors[i]->points[opp_point];
             if (in_circle(*(face->points[i]), *(face->points[(i+1)%3]),*(face->points[(i+2)%3]), *opp) ||
                 in_circle(*opp, *(face->points[(i+2)%3]), *(face->points[(i+1)%3]),*(face->points[i]))) {
-                FAV_face* f1=new FAV_face(),* f2=new FAV_face();
                 FAV_face* face1 = face, *face2 = face->neighbors[i];
                 f1->points[0] = face1->points[i]; f1->points[1] = face2->points[opp_point]; f1->points[2] = face1->points[(i+2)%3];
                 f2->points[0] = face2->points[opp_point]; f2->points[1] = face1->points[i]; f2->points[2] = face1->points[(i+1)%3];
-                f1->neighbors[0] = face2->neighbors[(opp_point+2)%3]; f1->neighbors[1] = face1->neighbors[(i+1)%3]; f1->neighbors[2] = f2;
-                f2->neighbors[0] = face1->neighbors[(i+2)%3]; f2->neighbors[1] = face2->neighbors[(opp_point+1)%3]; f2->neighbors[2] = f1;
-                add_new_face(f1);
-                add_new_face(f2);
-                delete_face(face1);
-                delete_face(face2);
-                update_flip(f1);
-                update_flip(f2);
+                f1->neighbors[0] = face2->neighbors[(opp_point+2)%3]; f1->neighbors[1] = face1->neighbors[(i+1)%3]; f1->neighbors[2] = face2;
+                f2->neighbors[0] = face1->neighbors[(i+2)%3]; f2->neighbors[1] = face2->neighbors[(opp_point+1)%3]; f2->neighbors[2] = face1;
+                for (int i = 0; i < 3; i++) {
+                    face1->points[i] = f1->points[i];
+                    face1->neighbors[i] = f1->neighbors[i];
+                    face2->points[i] = f2->points[i];
+                    face2->neighbors[i] = f2->neighbors[i];
+                }
+                for (int i = 0; i < 3; i++) {
+                    face1->neighbors[i]->update_neighbor(face1);
+                    face2->neighbors[i]->update_neighbor(face2);
+                }
+                face1->update_points();
+                face2->update_points();
+                update_flip(face1);
+                update_flip(face2);
                 break;
             }
         }
@@ -409,7 +417,7 @@ struct FAV {
 
 struct SkipListTriangulation {
     std::vector<FAV*> layers;
-    double COEF = 0.5;
+    double COEF = 0.1;
     std::uniform_real_distribution<double> unif;
     std::default_random_engine re;
 
@@ -455,7 +463,6 @@ struct SkipListTriangulation {
                 added_new_layer = true;
                 FAV_point*next = layers[layer_id]->add_point(p);
                 next->same_point_in_another_layer = last;
-                last = next;
             } else {
                 FAV_point*next = layers[layer_id]->add_point_near_some_existing_point(p, nearest[layer_id]);
                 next->same_point_in_another_layer = last;
