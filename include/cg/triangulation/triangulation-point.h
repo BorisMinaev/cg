@@ -196,32 +196,6 @@ struct FAV {
         return res;
     }
 
-
-
-    FAV_point * find_nearest(point_2 p, FAV_point * start_from) {
-        if (points_alive < 3)
-            return find_nearest(p);
-        std::vector<FAV_point*> points;
-        get_all_neighbors(start_from, points);
-        bool changed = false;
-        for (size_t i = 0; i < points.size(); i++) {
-            if (start_from->deleted || start_from->is_inf) {
-                start_from = points[i];
-                changed = true;
-                continue;
-            }
-            if (points[i]->is_inf)
-                continue;
-            if (compare_dist(p, points[i]->point, p, start_from->point)) {
-                changed = true;
-                start_from = points[i];
-            }
-        }
-        if (changed)
-            return find_nearest(p, start_from);
-        return start_from;
-    }
-
     void clean_points() {
         for (size_t i = 0; i < points.size(); i++) {
             if (points[i]->deleted) {
@@ -295,8 +269,7 @@ struct FAV {
         for (int i = 0; i < 3; i++) {
             int opp_point = get_opposite_point(*(face->neighbors[i]), face);
             FAV_point * opp = face->neighbors[i]->points[opp_point];
-            if (in_circle(*(face->points[i]), *(face->points[(i+1)%3]),*(face->points[(i+2)%3]), *opp) ||
-                in_circle(*opp, *(face->points[(i+2)%3]), *(face->points[(i+1)%3]),*(face->points[i]))) {
+            if (in_circle(*(face->points[i]), *(face->points[(i+1)%3]),*(face->points[(i+2)%3]), *opp) ) {
                 FAV_face* face1 = face, *face2 = face->neighbors[i];
                 f1->points[0] = face1->points[i]; f1->points[1] = face2->points[opp_point]; f1->points[2] = face1->points[(i+2)%3];
                 f2->points[0] = face2->points[opp_point]; f2->points[1] = face1->points[i]; f2->points[2] = face1->points[(i+1)%3];
@@ -374,6 +347,45 @@ struct FAV {
                 error("error localization.");
         }
         return res;
+    }
+
+    bool compare_dist2(point_2 & to, FAV_point * cur_best, FAV_point * new_p) {
+        if (new_p->is_inf)
+            return false;
+        if (cur_best->is_inf)
+            return true;
+        return compare_dist(to, new_p->point, to, cur_best->point);
+    }
+
+    const bool find_nearest_point_approximatly = true;
+
+    FAV_point * find_nearet_recursive(point_2 & p, FAV_point * cur_best, FAV_face * face) {
+        int best_id = -1;
+        for (int i = 0; i < 3; i++) {
+            if (compare_dist2(p, cur_best, face->points[i])) {
+                best_id = i;
+                cur_best = face->points[i];
+            }
+        }
+        if (best_id == -1 || find_nearest_point_approximatly)
+            return cur_best;
+        for (int j = 0; j < 3; j++)
+            if (j != best_id) {
+                FAV_point * new_best = find_nearet_recursive(p, cur_best, face->neighbors[j]);
+                if (compare_dist2(p, cur_best, new_best)) {
+                    cur_best = new_best;
+                }
+            }
+        return cur_best;
+    }
+
+    FAV_point * find_nearest(point_2 & p, FAV_point * start_from) {
+        if (points_alive < 3)
+            return find_nearest(p);
+        FAV_point p_fav = FAV_point(p);
+        FAV_point inf = FAV_point(true);
+        FAV_face * face_contains_p = find_face_contains_point(&p_fav, start_from);
+        return find_nearet_recursive(p, &inf, face_contains_p);
     }
 
     FAV_point * add_point(point_2 p) {
