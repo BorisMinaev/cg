@@ -10,6 +10,7 @@
 #include <cg/operations/compare_dist.h>
 #include <cg/io/triangle.h>
 #include <cg/io/point.h>
+#include <cmath>
 #include <random>
 
 namespace cg {
@@ -41,7 +42,7 @@ bool in_circle(FAV_point const & a, FAV_point const & b, FAV_point const & c, FA
     if (b.is_inf) cnt_inf++;
     if (c.is_inf) cnt_inf++;
     if (d.is_inf) cnt_inf++;
-    if (cnt_inf > 1 || d.is_inf)
+    if (cnt_inf > 1)
         return false;
     if (cnt_inf == 0)
         return in_circle(a.point, b.point, c.point, d.point);
@@ -51,6 +52,8 @@ bool in_circle(FAV_point const & a, FAV_point const & b, FAV_point const & c, FA
         return orientation(b.point, c.point, d.point) == CG_LEFT;
     if (b.is_inf)
         return orientation(c.point, a.point, d.point) == CG_LEFT;
+    if (d.is_inf)
+        return orientation(a.point,b.point, c.point) == CG_COLLINEAR;
     return false;
 }
 
@@ -86,9 +89,20 @@ struct FAV_face {
     }
 
     bool inside(FAV_point const & p) {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             if (orientation(*points[i], *points[(i+1)%3], p) == CG_RIGHT)
                 return false;
+            if (orientation(*points[i], *points[(i+1)%3], p) == CG_COLLINEAR) {
+                double minX = fmin(points[i]->point.x, points[(i+1)%3]->point.x);
+                double maxX = fmax(points[i]->point.x, points[(i+1)%3]->point.x);
+                double minY = fmin(points[i]->point.y, points[(i+1)%3]->point.y);
+                double maxY = fmax(points[i]->point.y, points[(i+1)%3]->point.y);
+                if (p.point.x < minX || p.point.x > maxX)
+                    return false;
+                if (p.point.y < minY || p.point.y > maxY)
+                    return false;
+            }
+        }
         return true;
     }
 
@@ -127,17 +141,18 @@ int get_opposite_point(FAV_face const & f, FAV_face * opposite) {
 
 // faces & vertices
 struct FAV {
-    size_t points_alive;
     std::vector<FAV_point*> points;
     std::vector<FAV_face*> faces;
     std::vector<FAV_face*> faces_want_to_delete;
     FAV_point* inf;
     FAV_face *f1, *f2;
+    std::vector<FAV_point*> before_points;
+    bool exist_faces;
 
     FAV() {
+        exist_faces = false;
         inf = new FAV_point(true);
         points.push_back(inf);
-        points_alive = 1;
         f1 = new FAV_face();
         f2 = new FAV_face();
     }
@@ -152,20 +167,30 @@ struct FAV {
     }
 
     FAV_point * find_nearest(point_2 p) {
-        size_t clothest = 0;
+        FAV_point * cl = points[0];
         for (size_t i = 1; i < points.size(); i++) {
             if (points[i]->deleted)
                 continue;
-            if (points[clothest]->deleted || points[clothest]->is_inf) {
-                clothest = i;
+            if (cl->deleted || cl->is_inf) {
+                cl = points[i];
                 continue;
             }
             if (points[i]->is_inf)
                 continue;
-            if (compare_dist(p, points[i]->point, p, points[clothest]->point))
-                clothest = i;
+            if (compare_dist(p, points[i]->point, p, cl->point))
+                cl = points[i];
         }
-        return points[clothest];
+        for (size_t i = 0; i < before_points.size(); i++) {
+            if (cl->deleted || cl->is_inf) {
+                cl = before_points[i];
+                continue;
+            }
+            if (before_points[i]->is_inf)
+                continue;
+            if (compare_dist(p, before_points[i]->point, p, cl->point))
+                cl = before_points[i];
+        }
+        return cl;
     }
 
     std::vector<FAV_point*> get_all_neighbors(FAV_point * p, std::vector<FAV_point*> & res) {
@@ -239,12 +264,34 @@ struct FAV {
 
     void delete_point(FAV_point * point) {
         points[point->id_in_vector] = points[points.size() - 1];
+        points[point->id_in_vector]->id_in_vector = point->id_in_vector;
         points.pop_back();
         delete point;
     }
 
+    bool check_exist_faces(FAV_point * pt) {
+        if (exist_faces)
+            return true;
+        before_points.push_back(pt);
+        if (before_points.size() < 3) {
+            return false;
+        }
+        if (orientation(before_points[0]->point, before_points[1]->point, pt->point) != CG_COLLINEAR) {
+            add_new_point(before_points[0]);
+            add_new_point(before_points[1]);
+            check_first_state();
+            exist_faces = true;
+            for (size_t i = before_points.size() - 1; i > 1; i--) {
+                add_new_point(before_points[i]);
+                add_point_to_existing_FAV(*before_points[i]);
+            }
+            before_points.clear();
+            return false;
+        }
+        return false;
+    }
+
     void check_first_state() {
-        if (points_alive == 3) {
             faces.clear();
             clean_points();
             FAV_face *f1=new FAV_face(),* f2=new FAV_face();
@@ -260,7 +307,6 @@ struct FAV {
             }
             add_new_face(f1);
             add_new_face(f2);
-        }
     }
 
     void update_flip(FAV_face *face) {
@@ -316,11 +362,19 @@ struct FAV {
         for (size_t i = 0; i < faces.size(); i++)
             if (!faces[i]->deleted) {
                 if (faces[i]->inside(p)) {
+                    if (!faces[i]->contains_inf()) {
+                        add_point_to_face(p, faces[i]);
+                        return;
+                    }
+                }
+            }
+        for (size_t i = 0; i < faces.size(); i++)
+            if (!faces[i]->deleted) {
+                if (faces[i]->inside(p)) {
                     add_point_to_face(p, faces[i]);
                     return;
                 }
             }
-        error("It can't be truth.");
     }
 
     // [ab] inersects (cd)
@@ -380,7 +434,7 @@ struct FAV {
     }
 
     FAV_point * find_nearest(point_2 & p, FAV_point * start_from) {
-        if (points_alive < 3)
+        if (!exist_faces)
             return find_nearest(p);
         FAV_point p_fav = FAV_point(p);
         FAV_point inf = FAV_point(true);
@@ -389,26 +443,20 @@ struct FAV {
     }
 
     FAV_point * add_point(point_2 p) {
-        points_alive++;
         FAV_point* new_point = new FAV_point(p);
-        add_new_point(new_point);
-        if (points_alive > 3) {
+        if (check_exist_faces(new_point)) {
+            add_new_point(new_point);
             add_point_to_existing_FAV(*new_point);
-        } else {
-            check_first_state();
         }
         return new_point;
     }
 
     FAV_point * add_point_near_some_existing_point(point_2 p, FAV_point * existing) {
-        points_alive++;
         FAV_point* new_point = new FAV_point(p);
-        add_new_point(new_point);
-        if (points_alive > 3) {
+        if (check_exist_faces(new_point)) {
+            add_new_point(new_point);
             FAV_face * face = find_face_contains_point(new_point, existing);
             add_point_to_face(*new_point, face);
-        } else {
-            check_first_state();
         }
         return new_point;
     }
@@ -463,7 +511,7 @@ struct SkipListTriangulation {
     }
 
     void add_point(point_2 p) {
-        bool added_new_layer = false;
+         bool added_new_layer = false;
         size_t layer_id = 0;
         std::vector<FAV_point*> nearest(layers.size());
         localize(p, nearest);

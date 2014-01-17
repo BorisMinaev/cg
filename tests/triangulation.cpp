@@ -23,7 +23,7 @@ TEST(triangulation, triangulation_check)
    using cg::triangle_2;
 
     for (int test_id = 0; test_id < 100; test_id++) {
-       std::vector<point_2> pts = uniform_points(30, test_id);
+       std::vector<point_2> pts = uniform_points(100, test_id);
 
        std::vector<triangle_2> result = cg::make_triangulation(pts.begin(), pts.end());
 

@@ -114,6 +114,8 @@ struct triangulation_viewer : cg::visualization::viewer_adapter
    void print(cg::visualization::printer_type & p) const
    {
       p.corner_stream() << "press mouse rbutton to add point" << cg::visualization::endl;
+      p.corner_stream() << "press 1, 2, 3, 4 to see examples" << cg::visualization::endl;
+      p.corner_stream() << "press 5 to clear" << cg::visualization::endl;
    }
 
    void make_triangulation_loc() {
@@ -129,6 +131,53 @@ struct triangulation_viewer : cg::visualization::viewer_adapter
 
    bool on_key(int key)
    {
+       if (key == Qt::Key_1) {
+           pts_.clear();
+           for (int i = 0; i < 20; i++) {
+               pts_.push_back(point_2((i-0) * 50, 0));
+           }
+           srand(0);
+           std::random_shuffle(pts_.begin(), pts_.end());
+           make_triangulation_loc();
+           return true;
+       }
+       if (key == Qt::Key_2) {
+           pts_.clear();
+           int total = 100;
+           for (int i = 0; i < total; i++) {
+               double alpha = 3.1415926 * 2 * i / total;
+               pts_.push_back(point_2(200 * cos(alpha), 200 * sin(alpha)));
+           }
+           std::random_shuffle(pts_.begin(), pts_.end());
+           make_triangulation_loc();
+           return true;
+       }
+       if (key == Qt::Key_3) {
+           pts_.clear();
+           for (int i = 0; i < 20; i++) {
+               pts_.push_back(point_2(0, (i-5) * 50));
+           }
+           srand(0);
+           std::random_shuffle(pts_.begin(), pts_.end());
+           make_triangulation_loc();
+           return true;
+       }
+       if (key == Qt::Key_4) {
+           pts_.clear();
+           double dx = 20, dy = 30;
+           for (int i = 0; i < 20; i++) {
+               pts_.push_back(point_2(dx * i, dy * i));
+           }
+           srand(0);
+           std::random_shuffle(pts_.begin(), pts_.end());
+           make_triangulation_loc();
+           return true;
+       }
+       if (key == Qt::Key_5) {
+           pts_.clear();
+           make_triangulation_loc();
+           return true;
+       }
       return true;
    }
 
