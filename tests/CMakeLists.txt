@@ -30,6 +30,7 @@ set(SOURCES
    convex.cpp
    bentley_ottmann.cpp
    triangulation.cpp
+   range_tree_test.cpp
    #cgal_convex_hull_test.cpp
 )
 
