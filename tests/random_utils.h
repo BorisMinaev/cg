@@ -40,3 +40,14 @@ inline std::vector<cg::point_2> uniform_points(size_t count, int seed)
 
     return res;
 }
+
+inline double random_double(int seed)
+{
+    std::uniform_real_distribution<double> unif(0,1);
+    std::default_random_engine re;
+    re.seed(seed);
+
+    return unif(re);
+}
+
+
